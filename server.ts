@@ -2,7 +2,6 @@ import { serveTLS } from "https://deno.land/std@0.75.0/http/server.ts";
 
 const proto = "https";
 const domain = "example.com";
-const root = "static";
 const options = {
   hostname: "0.0.0.0",
   port: 443,
