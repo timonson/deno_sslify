@@ -1,22 +1,23 @@
-import { serveTLS } from "https://deno.land/std@0.75.0/http/server.ts";
+import { serveTLS } from "https://deno.land/std@0.88.0/http/server.ts";
 
 const proto = "https";
 const domain = "example.com";
 const options = {
-  hostname: "0.0.0.0",
   port: 443,
   certFile: `/etc/letsencrypt/live/${domain}/fullchain.pem`,
   keyFile: `/etc/letsencrypt/live/${domain}/privkey.pem`,
 };
+
 const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
   type: "module",
+  deno: {
+    namespace: true,
+  },
 });
 
-worker.postMessage({ redirection: domain });
+worker.postMessage({ redirection: `${proto}://${domain}` });
 
-console.log(
-  `${proto.toUpperCase()} server listening on ${proto}://${options.hostname}:${options.port}/`,
-);
+console.log(`${proto.toUpperCase()} server listening on ${proto}://${domain}`);
 
 for await (const req of serveTLS(options)) {
   switch (req.method) {
