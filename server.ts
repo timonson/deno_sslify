@@ -15,7 +15,7 @@ const worker = new Worker(new URL("worker.ts", import.meta.url).href, {
   },
 });
 
-worker.postMessage({ redirection: `${proto}://${domain}` });
+worker.postMessage({ redirectionUrl: `${proto}://${domain}`, port: 80 });
 
 console.log(`${proto.toUpperCase()} server listening on ${proto}://${domain}`);
 
