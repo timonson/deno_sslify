@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.88.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.97.0/http/server.ts";
 
 self.onmessage = async (e) => {
   const { redirectionUrl, port } = e.data;

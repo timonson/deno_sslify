@@ -1,4 +1,4 @@
-import { serveTLS } from "https://deno.land/std@0.88.0/http/server.ts";
+import { serveTLS } from "https://deno.land/std@0.97.0/http/server.ts";
 
 const proto = "https";
 const domain = "example.com";
